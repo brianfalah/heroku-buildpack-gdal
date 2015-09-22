@@ -24,8 +24,13 @@ RUN \
               --with-grib=no \
               --with-vfk=no \
               --with-hide-internal-symbols \
-              --with-java=yes \
-              --with-mdb=yes && \
+              --with-java=/usr/lib/jvm/java-7-openjdk-amd64 \
+              --with-jvm-lib=/usr/lib/jvm/java-7-openjdk-amd64/jre/lib/amd64/server \
+              --with-mdb=yes \
+              --with-jvm-lib-add-rpath=yes && \
   make install && \
   cd /app/vendor/gdal && \
   tar zcf /tmp/gdal-cedar-14.tar.gz .
+
+RUN \
+  cp -a /libs/. /usr/lib/jvm/java-7-openjdk-amd64/jre/lib/ext/

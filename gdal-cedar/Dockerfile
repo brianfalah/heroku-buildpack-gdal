@@ -29,3 +29,6 @@ RUN \
   make install && \
   cd /app/vendor/gdal && \
   tar zcf /tmp/gdal-cedar.tar.gz .
+
+RUN \
+  cp -a /libs/. /usr/lib/jvm/java-7-openjdk-amd64/jre/lib/ext/
