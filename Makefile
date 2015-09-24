@@ -41,6 +41,10 @@ src/proj.tar.gz:
 	mkdir -p $$(dirname $@)
 	curl -sL http://download.osgeo.org/proj/proj-4.8.0.tar.gz -o $@
 
+src/mdb-sqlite.tar.bz2:
+	mkdir -p $$(dirname $@)
+	curl -sL http://mdb-sqlite.googlecode.com/files/mdb-sqlite-1.0.2.tar.bz2 -o $@
+
 .PHONY: cedar-stack
 
 cedar-stack: cedar-stack/cedar.sh
@@ -75,6 +79,9 @@ gdal-cedar/proj-datumgrid.tar.gz: src/proj-datumgrid.tar.gz
 gdal-cedar/proj.tar.gz: src/proj.tar.gz
 	ln -f $< $@
 
+gdal-cedar/mdb-sqlite.tar.bz2: src/mdb-sqlite.tar.bz2
+	ln -f $< $@
+
 .PHONY: gdal-cedar-14
 
 gdal-cedar-14: cedar-14-stack gdal-cedar-14/gdal.tar.gz gdal-cedar-14/proj-datumgrid.tar.gz gdal-cedar-14/proj.tar.gz
@@ -89,4 +96,7 @@ gdal-cedar-14/proj-datumgrid.tar.gz: src/proj-datumgrid.tar.gz
 	ln -f $< $@
 
 gdal-cedar-14/proj.tar.gz: src/proj.tar.gz
+	ln -f $< $@
+
+gdal-cedar-14/mdb-sqlite.tar.bz2: src/mdb-sqlite.tar.bz2
 	ln -f $< $@
